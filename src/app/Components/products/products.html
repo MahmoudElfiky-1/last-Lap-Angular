@@ -1,0 +1,70 @@
+@if (isLoading) {
+  <div class="p-6 text-center font-semibold opacity-70">Loading products...</div>
+}
+@if (!isLoading && errorMessage) {
+  <div class="p-6 text-center">
+    <div class="alert alert-error inline-flex">{{ errorMessage }}</div>
+    <div class="mt-3">
+      <button class="btn btn-neutral" type="button" (click)="getProducts()">Retry</button>
+    </div>
+  </div>
+}
+
+@if (!isLoading && !errorMessage && productList.length === 0) {
+  <div class="p-6 text-center font-semibold opacity-70">No products found.</div>
+}
+
+<div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 16px;">
+  @for (p of productList; track p.id) {
+    <div class="card bg-base-100 w-96 shadow-sm">
+      <figure class="px-10 pt-10">
+        <div class="w-full text-center font-semibold opacity-70 py-6">
+          {{ p.name }}
+        </div>
+      </figure>
+      <div class="card-body items-center text-center">
+        <h2 class="card-title">{{ p.name }}</h2>
+        <div class="text-sm opacity-80">
+          <div><strong>Price:</strong> {{ getFirstDataValue(p, ['price', 'Price']) ?? '—' }}</div>
+          <div><strong>Color:</strong> {{ getFirstDataValue(p, ['color', 'Color']) ?? '—' }}</div>
+          <div><strong>Capacity:</strong> {{ getFirstDataValue(p, ['capacity', 'Capacity', 'capacity GB']) ?? '—' }}</div>
+        </div>
+        <div class="card-actions">
+          <button class="btn btn-primary" type="button">Buy Now</button>
+          <button class="btn btn-neutral" type="button" (click)="showUpdateModal(p)">Edit</button>
+          <button class="btn btn-secondary" type="button" (click)="deleteProduct(p.id!)">Delete</button>
+        </div>
+      </div>
+    </div>
+  }
+</div>
+
+<dialog id="my_modal_5" class="modal modal-bottom sm:modal-middle">
+  <div class="modal-box">
+    <form
+      class="mx-auto w-100 fieldset bg-base-200 border-base-300 rounded-box w-xs border p-4"
+      [formGroup]="updateForm"
+      (ngSubmit)="updateProduct()">
+      <legend class="fieldset-legend">update Product</legend>
+
+      <input type="hidden" formControlName="id" />
+
+      <label class="label">Product Name</label>
+      <input type="text" class="input" placeholder="Product Name" formControlName="name" />
+
+      <label class="label">Price</label>
+      <input type="number" class="input" placeholder="Price" formControlName="price" />
+
+      <label class="label">Color</label>
+      <input type="text" class="input" placeholder="Color" formControlName="color" />
+
+      <label class="label">Capacity</label>
+      <input type="text" class="input" placeholder="Capacity" formControlName="capacity" />
+
+      <button class="btn btn-neutral mt-4" type="submit">Update Product</button>
+    </form>
+    <div class="modal-action">
+      <button class="btn" type="button" (click)="closeUpdateModal()">Close</button>
+    </div>
+  </div>
+</dialog>

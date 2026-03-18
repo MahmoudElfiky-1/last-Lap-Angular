@@ -1,0 +1,35 @@
+<div class="max-w-xl mx-auto p-4">
+  <div class="card bg-base-100 shadow">
+    <div class="card-body">
+      <h2 class="card-title">Add Product</h2>
+
+      <form [formGroup]="productForm" (ngSubmit)="onSubmit()" class="flex flex-col gap-3">
+        <label class="label">Name</label>
+        <input class="input input-bordered" type="text" placeholder="Product name" formControlName="name" />
+
+        <label class="label">Price</label>
+        <input class="input input-bordered" type="number" placeholder="Price" formControlName="price" />
+
+        <label class="label">Color</label>
+        <input class="input input-bordered" type="text" placeholder="Color" formControlName="color" />
+
+        <label class="label">Capacity</label>
+        <input class="input input-bordered" type="text" placeholder="Capacity (e.g. 128 GB)" formControlName="capacity" />
+
+        <div class="flex gap-2 mt-2">
+          <button class="btn btn-primary" type="submit" [disabled]="isLoading || productForm.invalid">
+            {{ isLoading ? 'Saving...' : 'Add Product' }}
+          </button>
+          <a class="btn btn-ghost" routerLink="/products">Back</a>
+        </div>
+
+        @if (successMessage) {
+          <div class="alert alert-success mt-2">{{ successMessage }}</div>
+        }
+        @if (errorMessage) {
+          <div class="alert alert-error mt-2">{{ errorMessage }}</div>
+        }
+      </form>
+    </div>
+  </div>
+</div>

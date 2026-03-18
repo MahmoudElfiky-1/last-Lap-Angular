@@ -1,0 +1,100 @@
+.product-card {
+  border: none;
+  border-radius: 12px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  overflow: hidden;
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15) !important;
+}
+
+.card-header-custom {
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.product-emoji {
+  font-size: 3rem;
+}
+
+.w-fit {
+  width: fit-content;
+}
+
+/* ===== Modal ===== */
+dialog {
+  border: none;
+  border-radius: 16px;
+  padding: 0;
+  width: 520px;
+  max-width: 95vw;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  animation: slideIn 0.3s ease;
+}
+
+dialog::backdrop {
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.modal-box {
+  padding: 25px;
+}
+
+.modal-header-custom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 15px;
+  border-bottom: 2px solid #f0f0f0;
+  margin-bottom: 10px;
+}
+
+.btn-close-custom {
+  background: #f44336;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: bold;
+  transition: background 0.3s;
+}
+
+.btn-close-custom:hover {
+  background: #c62828;
+}
+
+/* ===== Form ===== */
+.form-control {
+  border-radius: 8px;
+  padding: 10px 14px;
+}
+
+.form-control:focus {
+  border-color: #f39c12;
+  box-shadow: 0 0 0 0.2rem rgba(243, 156, 18, 0.2);
+}
+
+.btn {
+  border-radius: 8px;
+  font-weight: 600;
+  padding: 10px;
+}
