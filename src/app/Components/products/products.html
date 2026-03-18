@@ -24,11 +24,6 @@
       </figure>
       <div class="card-body items-center text-center">
         <h2 class="card-title">{{ p.name }}</h2>
-        <div class="text-sm opacity-80">
-          <div><strong>Price:</strong> {{ getFirstDataValue(p, ['price', 'Price']) ?? '—' }}</div>
-          <div><strong>Color:</strong> {{ getFirstDataValue(p, ['color', 'Color']) ?? '—' }}</div>
-          <div><strong>Capacity:</strong> {{ getFirstDataValue(p, ['capacity', 'Capacity', 'capacity GB']) ?? '—' }}</div>
-        </div>
         <div class="card-actions">
           <button class="btn btn-primary" type="button">Buy Now</button>
           <button class="btn btn-neutral" type="button" (click)="showUpdateModal(p)">Edit</button>

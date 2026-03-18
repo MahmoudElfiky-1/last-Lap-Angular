@@ -142,19 +142,4 @@ export class Products implements OnInit {
       },
     });
   }
-
-  getDataValue(product: IProducts, key: string): unknown {
-    // endpoint may return data: null
-    const data = (product as any)?.data;
-    if (!data) return undefined;
-    return data[key];
-  }
-
-  getFirstDataValue(product: IProducts, keys: string[]): unknown {
-    for (const k of keys) {
-      const v = this.getDataValue(product, k);
-      if (v !== undefined && v !== null && v !== '') return v;
-    }
-    return undefined;
-  }
 }
